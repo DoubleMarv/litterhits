@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Greatest Hits — Ireland's Litter Charts</title>
+  <meta name="description" content="The top 5 litter spots in Ireland this week. Seen one? Send us a photo.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <p class="kicker">The Litter Charts &middot; Ireland</p>
+      <h1>Greatest<br><span>Hits</span></h1>
+      <p class="lede">The country's top 5 litter spots. Nobody requested them, but they keep coming back. Seen a contender? Send it in.</p>
+      <div class="hero-actions">
+        <a class="btn btn-ink" href="#top5">See the Top 5</a>
+        <a class="btn btn-line" href="#report">Report a spot</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="top5" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>This week's Top 5</h2>
+          <p>Ranked by how many times each spot has been reported.</p>
+        </div>
+        <ol class="cards" id="cards"></ol>
+      </div>
+    </section>
+
+    <section id="map-section" class="section section-dark">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>On tour</h2>
+          <p>Where the hits are playing. Tap a marker, or tap a card above to jump to it.</p>
+        </div>
+        <div id="map" class="map" role="region" aria-label="Map of Ireland showing the top 5 litter spots"></div>
+      </div>
+    </section>
+
+    <section id="report" class="section">
+      <div class="wrap report-grid">
+        <div class="section-head">
+          <h2>Report a spot</h2>
+          <p>Send us a photo and tell us where it is. Every report is reviewed by a person before anything goes on this page.</p>
+          <p class="small">Only the photo and location are needed. Your name and email are optional and are only used if we need to ask you about the report.</p>
+        </div>
+
+        <form id="report-form" class="form" novalidate>
+          <div class="field">
+            <label for="photo">Photo <span class="req">*</span></label>
+            <div class="dropzone" id="dropzone">
+              <input type="file" id="photo" name="photo" accept="image/*" required>
+              <div class="dropzone-text" id="dropzone-text">
+                <strong>Choose a photo</strong>
+                <span>or take one with your phone</span>
+              </div>
+              <img id="photo-preview" class="photo-preview" alt="" hidden>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="location">Where is it? <span class="req">*</span></label>
+            <input type="text" id="location" name="location" placeholder="e.g. Lay-by on the R600 outside Kinsale" required>
+          </div>
+
+          <div class="field">
+            <label for="county">County</label>
+            <select id="county" name="county">
+              <option value="">Select a county</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <span class="label">Pin it (optional)</span>
+            <div class="pin-row">
+              <button type="button" class="btn btn-line btn-sm" id="geo-btn">Use my location</button>
+              <span class="pin-or">or click the map above</span>
+            </div>
+            <p class="pin-status" id="pin-status" aria-live="polite"></p>
+            <input type="hidden" name="lat" id="lat">
+            <input type="hidden" name="lng" id="lng">
+          </div>
+
+          <div class="field">
+            <label for="details">What's there?</label>
+            <textarea id="details" name="details" rows="4" placeholder="Bags, cans, a mattress, a full kitchen..."></textarea>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="email">Your email</label>
+              <input type="email" id="email" name="email" autocomplete="email">
+            </div>
+          </div>
+
+          <label class="check">
+            <input type="checkbox" name="feature_ok" value="yes">
+            <span>You can feature my photo on this page if the spot makes the chart.</span>
+          </label>
+
+          <!-- Honeypot: hidden from people, bots fill it in -->
+          <div class="hp" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button type="submit" class="btn btn-ink btn-block" id="submit-btn">Send report</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>Greatest Hits &middot; Ireland's Litter Charts</p>
+      <p class="small">Map data &copy; OpenStreetMap contributors</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
