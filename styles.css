@@ -13,8 +13,8 @@
   --sky: #a9bcbc;
   --white: #fbf9f3;
   --radius: 12px;
-  --serif: "Fraunces", Georgia, "Times New Roman", serif;
-  --sans: "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display: "Bagel Fat One", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --sans: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
   --shadow: 0 1px 2px rgba(44, 42, 34, 0.06), 0 8px 24px rgba(44, 42, 34, 0.08);
 }
 
@@ -64,7 +64,7 @@ img {
   border-radius: 999px;
   font-family: var(--sans);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
@@ -124,17 +124,137 @@ img {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   pointer-events: none;
+  z-index: 0;
 }
 
 .hero .wrap {
   position: relative;
+  z-index: 2;
+}
+
+/* ---------- Pasture scene ----------
+   Each image sits on the hills. Change the files in /images
+   (SVG or PNG), or move them with left / bottom / width.
+   bottom is measured up from the bottom of the hero. */
+
+.scene {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 180px;
   z-index: 1;
+  pointer-events: none;
+  --scale: 1;
+}
+
+.scene img {
+  position: absolute;
+  height: auto;
+  width: calc(var(--w) * var(--scale));
+}
+
+.flip {
+  transform: scaleX(-1);
+}
+
+/* Trees and bushes (back hills) */
+.s-pine-left {
+  left: 2%;
+  bottom: 96px;
+  --w: 64px;
+}
+
+.s-bush {
+  left: 53%;
+  bottom: 92px;
+  --w: 110px;
+}
+
+.s-tree-small {
+  left: 63%;
+  bottom: 112px;
+  --w: 110px;
+  transform: scaleX(-1);
+}
+
+.s-tree-big {
+  left: 74%;
+  bottom: 104px;
+  --w: 210px;
+}
+
+.s-pine-right {
+  left: 88%;
+  bottom: 100px;
+  --w: 92px;
+}
+
+/* Rubbish (front hills) */
+.s-mattress {
+  left: 70%;
+  bottom: 66px;
+  --w: 120px;
+}
+
+.s-crisps {
+  left: 12%;
+  bottom: 44px;
+  --w: 36px;
+  transform: rotate(-14deg);
+}
+
+.s-can-1 {
+  left: 21%;
+  bottom: 40px;
+  --w: 40px;
+  transform: rotate(8deg);
+}
+
+.s-bag-1 {
+  left: 29%;
+  bottom: 38px;
+  --w: 68px;
+}
+
+.s-bottle {
+  left: 37%;
+  bottom: 36px;
+  --w: 52px;
+  transform: rotate(-6deg);
+}
+
+.s-tyre {
+  left: 45%;
+  bottom: 36px;
+  --w: 54px;
+}
+
+.s-can-2 {
+  left: 59%;
+  bottom: 40px;
+  --w: 34px;
+  transform: rotate(-20deg);
+}
+
+.s-bag-2 {
+  left: 83%;
+  bottom: 40px;
+  --w: 58px;
+  transform: scaleX(-1);
+}
+
+.s-cup {
+  left: 93%;
+  bottom: 42px;
+  --w: 26px;
+  transform: rotate(70deg);
 }
 
 .kicker {
   margin: 0 0 14px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--bark);
@@ -142,17 +262,14 @@ img {
 
 .hero h1 {
   margin: 0;
-  font-family: var(--serif);
-  font-size: clamp(60px, 11vw, 136px);
-  font-weight: 600;
-  font-variation-settings: "opsz" 144;
+  font-family: var(--display);
+  font-size: clamp(54px, 9.5vw, 118px);
+  font-weight: 400;
   line-height: 0.92;
   letter-spacing: -0.02em;
 }
 
 .hero h1 span {
-  font-style: italic;
-  font-weight: 400;
   color: var(--moss);
 }
 
@@ -196,10 +313,9 @@ img {
 
 .section-head h2 {
   margin: 0 0 10px;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: clamp(34px, 4.5vw, 52px);
-  font-weight: 600;
-  font-variation-settings: "opsz" 144;
+  font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.01em;
 }
@@ -285,7 +401,7 @@ img {
     radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.35), transparent 60%),
     linear-gradient(160deg, var(--oat) 0%, var(--oat-dark) 100%);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -303,9 +419,9 @@ img {
   color: var(--moss-dark);
   border-radius: 50%;
   box-shadow: 0 2px 6px rgba(44, 42, 34, 0.18);
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .card:nth-child(1) .rank {
@@ -324,7 +440,7 @@ img {
   background: rgba(251, 249, 243, 0.92);
   border-radius: 999px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted);
@@ -348,9 +464,9 @@ img {
 
 .card-title {
   margin: 0 0 4px;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 23px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.15;
 }
 
@@ -361,7 +477,7 @@ img {
 .card-place {
   margin: 0 0 10px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--bark);
 }
 
@@ -385,14 +501,14 @@ img {
   background: var(--linen);
   border-radius: 999px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--muted);
 }
 
 .card-meta li.count {
   background: rgba(77, 97, 64, 0.14);
   color: var(--moss-dark);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* ---------- Map ---------- */
@@ -419,9 +535,9 @@ img {
   border: 2px solid var(--white);
   border-radius: 50%;
   box-shadow: 0 3px 8px rgba(44, 42, 34, 0.35);
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .map-pin.is-top {
@@ -451,9 +567,9 @@ img {
 
 .leaflet-popup-content strong {
   display: block;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 17px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 /* ---------- Form ---------- */
@@ -491,7 +607,7 @@ img {
   display: block;
   margin-bottom: 6px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .req {
@@ -564,9 +680,9 @@ img {
 
 .dropzone-text strong {
   display: block;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 19px;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--moss-dark);
 }
 
@@ -596,7 +712,7 @@ img {
   min-height: 1.2em;
   margin: 8px 0 0;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--moss);
 }
 
@@ -627,7 +743,7 @@ img {
 .form-status {
   min-height: 1.4em;
   margin: 14px 0 0;
-  font-weight: 500;
+  font-weight: 400;
   text-align: center;
 }
 
@@ -656,8 +772,8 @@ img {
 
 .footer p {
   margin: 0;
-  font-family: var(--serif);
-  font-weight: 600;
+  font-family: var(--display);
+  font-weight: 400;
 }
 
 .footer .small {
@@ -669,6 +785,14 @@ img {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 900px) {
+  .hero {
+    padding-bottom: 260px;
+  }
+
+  .scene {
+    --scale: 0.75;
+  }
+
   .cards {
     grid-template-columns: 1fr 1fr;
   }
@@ -700,11 +824,59 @@ img {
   }
 
   .hero {
-    padding: 64px 0 140px;
+    padding: 64px 0 230px;
   }
 
   .hero::after {
     height: 110px;
+  }
+
+  .scene {
+    height: 110px;
+    --scale: 0.55;
+  }
+
+  .s-pine-left {
+    bottom: 56px;
+  }
+
+  .s-bush {
+    bottom: 56px;
+  }
+
+  .s-tree-small {
+    bottom: 66px;
+  }
+
+  .s-tree-big {
+    bottom: 62px;
+    left: 70%;
+  }
+
+  .s-pine-right {
+    bottom: 60px;
+  }
+
+  .s-mattress {
+    bottom: 38px;
+    left: 62%;
+  }
+
+  .s-crisps,
+  .s-can-1,
+  .s-bag-1,
+  .s-bottle,
+  .s-tyre,
+  .s-can-2,
+  .s-bag-2,
+  .s-cup {
+    bottom: 22px;
+  }
+
+  .s-crisps,
+  .s-bottle,
+  .s-cup {
+    display: none;
   }
 
   .cards {
